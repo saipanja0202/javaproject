@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class Main
+{
+    static void vote(){
+        int nomineeCount,i=0,j=0,temp,max=0,maxIndex=0;
+        
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Enter the number of Nominee's");
+        nomineeCount = scan.nextInt();
+        
+        String[] nomineeNames = new String[nomineeCount+1];
+        int[] votesCount = new int[nomineeCount+1];
+        
+        scan.nextLine();
+        while(i < nomineeCount){
+            System.out.println("Enter the name of nominee: "+(i+1));
+            nomineeNames[i] = scan.nextLine();
+            i++;
+        }
+        nomineeNames[i] = "Nota";
+        nomineeCount++;
+        i = 1;
+        System.out.println("\nChoose your option\n\n1. Cast a vote\n2. Stop the voting and declare the winner\n");
+        i = scan.nextInt();
+        
+        while(i == 1){
+            j = 0;
+            System.out.println("To vote for a nominee press the number beside the name: ");
+            while(j < nomineeCount){
+                System.out.println("Name: " + nomineeNames[j] +" - "+ (j+1));
+                j++;
+            }
+            temp = scan.nextInt();
+            votesCount[temp-1]++;
+            
+            System.out.println("\nChoose your option\n\n1. Cast a vote\n2. Stop the voting and declare the winner\n");
+            i = scan.nextInt();
+        }
+        
+        i = 0;
+        System.out.println("Nominee Name - Votes");
+        while(i < nomineeCount){
+            System.out.println(nomineeNames[i] + " - " + votesCount[i]);
+                 if(max < votesCount[i]){
+                     max = votesCount[i];
+                     maxIndex = i;
+                   }
+            i++;
+        }
+   System.out.println("\n*********\n Winner - " + nomineeNames[maxIndex] + "    " +votesCount[maxIndex]+ "\n********** ");
+    }
+	public static void main(String[] args) {
+	    vote();
+	}
+
+	
+}
